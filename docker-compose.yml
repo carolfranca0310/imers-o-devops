@@ -1,0 +1,16 @@
+# Definição dos serviços
+services:
+  # Serviço da sua aplicação principal
+  app:
+    # Constrói a imagem a partir do Dockerfile no diretório atual ('.')
+    build: .
+
+    container_name: minha-fastapi-app # Nome do container
+    # Mapeia a porta 8000 do contêiner para a porta 8000 da sua máquina
+    ports:
+      - "8000:8000"
+    # Monta o diretório atual ('.') dentro do contêiner em /app
+    # Isso é essencial para que o "hot-reloading" (como o --reload do uvicorn) funcione,
+    # pois as alterações no seu código local serão refletidas instantaneamente no contêiner.
+    volumes:
+      - .:/app
